@@ -1,2 +1,4 @@
 rootProject.name = "HappyS"
 include ':app'
+include ':thlibs:kdtablayout'
+include ':thlibs:lib'

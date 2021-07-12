@@ -17,7 +17,7 @@ public class ClassListFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_classlist, container, false);
-        TextView view = root.findViewById(R.id.text);
+        TextView view = root.findViewById(R.id.tv_text);
         mParam = getArguments().getString( ARG_PARAM);
         view.setText(mParam);
         return root;

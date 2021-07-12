@@ -1,5 +1,6 @@
 package com.zlin.happys.ui.dashboard;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -18,12 +21,20 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.lzy.okgo.callback.AbsCallback;
+import com.lzy.okgo.callback.StringCallback;
+import com.lzy.okgo.model.Response;
 import com.zlin.happys.R;
 import com.zlin.happys.base.BaseFragment;
 import com.zlin.happys.databinding.FragmentDashboardBinding;
+import com.zlin.happys.model.ClassGradeDao;
 import com.zlin.happys.model.ClassName;
+import com.zlin.happys.model.ClassNameDao;
+import com.zlin.happys.utils.OkGoUtils;
+import com.zlin.happys.utils.UrlUtil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DashboardFragment extends BaseFragment {
@@ -44,9 +55,27 @@ public class DashboardFragment extends BaseFragment {
 
         binding = FragmentDashboardBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+        initData();
         initView(root);
         return root;
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    public void initData(){
+        ClassGradeDao classGradeDao = getDaoSession().getClassGradeDao();
+        ClassNameDao classNameDao = getDaoSession().getClassNameDao();
+        classes = classNameDao.queryBuilder().list();
+
+//        classes.add( new ClassName("aa","道德","11111"));
+//        classes.add( new ClassName("aa","科学","11111"));
+//        classes.add( new ClassName("aa","美术","11111"));
+//        classes.add( new ClassName("aa","音乐","11111"));
+    }
+
 
     public void initView(View view){
         mTabLayout = view.findViewById(R.id.tablayout);
@@ -54,10 +83,10 @@ public class DashboardFragment extends BaseFragment {
         mAdapter = new ViewPagerFragmentStateAdapter(DashboardFragment.this);
         mViewPager2.setAdapter(mAdapter);
         mViewPager2.setUserInputEnabled(true);//true:滑动，false：禁止滑动
-        mTabLayout.addTab(mTabLayout.newTab().setText("生活"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("体育"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("美食"));
-        mTabLayout.addTab(mTabLayout.newTab().setText("头条"));
+        for (int i = 0; i < classes.size(); i++) {
+            mTabLayout.addTab(mTabLayout.newTab().setText(classes.get(i).getName()));
+        }
+
         //tab点击选中
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

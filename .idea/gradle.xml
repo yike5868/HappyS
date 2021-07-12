@@ -11,6 +11,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/thlibs" />
+            <option value="$PROJECT_DIR$/thlibs/kdtablayout" />
+            <option value="$PROJECT_DIR$/thlibs/lib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
