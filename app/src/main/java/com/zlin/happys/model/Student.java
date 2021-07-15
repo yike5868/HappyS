@@ -1,181 +1,187 @@
 package com.zlin.happys.model;
 
+import java.util.Date;
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
-
-import java.util.Date;
 import org.greenrobot.greendao.annotation.Generated;
+
 @Entity
 public class Student {
-    /**
-     * id
-     */
-    @Id
-    private String sId;
-    /**
-     * 学生登录名
-     */
-    @Property
-    private String userName;
-    /**
-     * 密码
-     */
-    @Property
-    private String password;
-    /**
-     * 学生姓名
-     */
-    @Property
-    private String sName;
+  @Id
+  private String sId;
+  @Property
+  private String userName;
+  @Property
+  private String password;
+  @Property
+  private String sName;
+  @Property
+  private String sSex;
+  @Property
+  private String sIdCard;
+  @Property
+  private Date sRxsj;
+  @Property
+  private String sClass;
+  @Property
+  private String sGrade;
+  @Property
+  private String school;
 
-    /**
-     * 学生性别
-     */
-    @Property
-    private String sSex;
-    /**
-     * 学生身份证号
-     */
-    @Property
-    private String sIdCard;
-    /**
-     * 学生入学时间
-     */
-    @Property
-    private Date sRXSJ;
-    /**
-     * 学生年级
-     */
-    @Property
-    private String sGrade;
+  @Generated(hash = 1171313715)
+  public Student(String sId, String userName, String password, String sName,
+          String sSex, String sIdCard, Date sRxsj, String sClass, String sGrade,
+          String school) {
+      this.sId = sId;
+      this.userName = userName;
+      this.password = password;
+      this.sName = sName;
+      this.sSex = sSex;
+      this.sIdCard = sIdCard;
+      this.sRxsj = sRxsj;
+      this.sClass = sClass;
+      this.sGrade = sGrade;
+      this.school = school;
+  }
 
-    @Generated(hash = 1735080471)
-    public Student(String sId, String userName, String password, String sName,
-            String sSex, String sIdCard, Date sRXSJ, String sGrade) {
-        this.sId = sId;
-        this.userName = userName;
-        this.password = password;
-        this.sName = sName;
-        this.sSex = sSex;
-        this.sIdCard = sIdCard;
-        this.sRXSJ = sRXSJ;
-        this.sGrade = sGrade;
-    }
+  @Generated(hash = 1556870573)
+  public Student() {
+  }
 
-    @Generated(hash = 1556870573)
-    public Student() {
-    }
+  public String getsId() {
+    return sId;
+  }
 
-    public String getsId() {
-        return sId;
-    }
+  public void setsId(String sId) {
+    this.sId = sId;
+  }
 
-    public void setsId(String sId) {
-        this.sId = sId;
-    }
+  public String getUserName() {
+    return userName;
+  }
 
-    public String getUserName() {
-        return userName;
-    }
+  public void setUserName(String userName) {
+    this.userName = userName;
+  }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+  public String getPassword() {
+    return password;
+  }
 
-    public String getPassword() {
-        return password;
-    }
+  public void setPassword(String password) {
+    this.password = password;
+  }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+  public String getsName() {
+    return sName;
+  }
 
-    public String getsName() {
-        return sName;
-    }
+  public void setsName(String sName) {
+    this.sName = sName;
+  }
 
-    public void setsName(String sName) {
-        this.sName = sName;
-    }
+  public String getsSex() {
+    return sSex;
+  }
 
-    public String getsSex() {
-        return sSex;
-    }
+  public void setsSex(String sSex) {
+    this.sSex = sSex;
+  }
 
-    public void setsSex(String sSex) {
-        this.sSex = sSex;
-    }
+  public String getsIdCard() {
+    return sIdCard;
+  }
 
-    public String getsIdCard() {
-        return sIdCard;
-    }
+  public void setsIdCard(String sIdCard) {
+    this.sIdCard = sIdCard;
+  }
 
-    public void setsIdCard(String sIdCard) {
-        this.sIdCard = sIdCard;
-    }
+  public Date getsRxsj() {
+    return sRxsj;
+  }
 
-    public Date getsRXSJ() {
-        return sRXSJ;
-    }
+  public void setsRxsj(Date sRxsj) {
+    this.sRxsj = sRxsj;
+  }
 
-    public void setsRXSJ(Date sRXSJ) {
-        this.sRXSJ = sRXSJ;
-    }
+  public String getsClass() {
+    return sClass;
+  }
 
-    public String getsGrade() {
-        return sGrade;
-    }
+  public void setsClass(String sClass) {
+    this.sClass = sClass;
+  }
 
-    public void setsGrade(String sGrade) {
-        this.sGrade = sGrade;
-    }
+  public String getsGrade() {
+    return sGrade;
+  }
 
-    public String getSId() {
-        return this.sId;
-    }
+  public void setsGrade(String sGrade) {
+    this.sGrade = sGrade;
+  }
 
-    public void setSId(String sId) {
-        this.sId = sId;
-    }
+  public String getSchool() {
+    return school;
+  }
 
-    public String getSName() {
-        return this.sName;
-    }
+  public void setSchool(String school) {
+    this.school = school;
+  }
 
-    public void setSName(String sName) {
-        this.sName = sName;
-    }
+  public String getSId() {
+      return this.sId;
+  }
 
-    public String getSSex() {
-        return this.sSex;
-    }
+  public void setSId(String sId) {
+      this.sId = sId;
+  }
 
-    public void setSSex(String sSex) {
-        this.sSex = sSex;
-    }
+  public String getSName() {
+      return this.sName;
+  }
 
-    public String getSIdCard() {
-        return this.sIdCard;
-    }
+  public void setSName(String sName) {
+      this.sName = sName;
+  }
 
-    public void setSIdCard(String sIdCard) {
-        this.sIdCard = sIdCard;
-    }
+  public String getSSex() {
+      return this.sSex;
+  }
 
-    public Date getSRXSJ() {
-        return this.sRXSJ;
-    }
+  public void setSSex(String sSex) {
+      this.sSex = sSex;
+  }
 
-    public void setSRXSJ(Date sRXSJ) {
-        this.sRXSJ = sRXSJ;
-    }
+  public String getSIdCard() {
+      return this.sIdCard;
+  }
 
-    public String getSGrade() {
-        return this.sGrade;
-    }
+  public void setSIdCard(String sIdCard) {
+      this.sIdCard = sIdCard;
+  }
 
-    public void setSGrade(String sGrade) {
-        this.sGrade = sGrade;
-    }
+  public Date getSRxsj() {
+      return this.sRxsj;
+  }
+
+  public void setSRxsj(Date sRxsj) {
+      this.sRxsj = sRxsj;
+  }
+
+  public String getSClass() {
+      return this.sClass;
+  }
+
+  public void setSClass(String sClass) {
+      this.sClass = sClass;
+  }
+
+  public String getSGrade() {
+      return this.sGrade;
+  }
+
+  public void setSGrade(String sGrade) {
+      this.sGrade = sGrade;
+  }
 }

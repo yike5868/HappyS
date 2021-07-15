@@ -2,7 +2,9 @@ package com.zlin.happys.ui.dashboard;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,26 +29,26 @@ import com.lzy.okgo.model.Response;
 import com.zlin.happys.R;
 import com.zlin.happys.base.BaseFragment;
 import com.zlin.happys.databinding.FragmentDashboardBinding;
-import com.zlin.happys.model.ClassGradeDao;
-import com.zlin.happys.model.ClassName;
-import com.zlin.happys.model.ClassNameDao;
+import com.zlin.happys.model.ClassgradeDao;
+import com.zlin.happys.model.Classname;
+import com.zlin.happys.model.ClassnameDao;
 import com.zlin.happys.utils.OkGoUtils;
 import com.zlin.happys.utils.UrlUtil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class DashboardFragment extends BaseFragment {
 
     private DashboardViewModel dashboardViewModel;
     private FragmentDashboardBinding binding;
-
     ViewPagerFragmentStateAdapter mAdapter;
-
+    List<ClassListFragment> listFragments;
     private ViewPager2 mViewPager2;
     private TabLayout mTabLayout;
-    private List<ClassName> classes = new ArrayList<>();
+    private List<Classname> classes = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -65,9 +67,11 @@ public class DashboardFragment extends BaseFragment {
         super.onStart();
     }
 
+
+
     public void initData(){
-        ClassGradeDao classGradeDao = getDaoSession().getClassGradeDao();
-        ClassNameDao classNameDao = getDaoSession().getClassNameDao();
+        ClassgradeDao classGradeDao = getDaoSession().getClassgradeDao();
+        ClassnameDao classNameDao = getDaoSession().getClassnameDao();
         classes = classNameDao.queryBuilder().list();
 
 //        classes.add( new ClassName("aa","道德","11111"));
@@ -106,9 +110,10 @@ public class DashboardFragment extends BaseFragment {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
-                mTabLayout.setScrollPosition(position,0,false);
+                mTabLayout.setScrollPosition(position,0,true);
             }
         });
+
     }
 
     @Override

@@ -7,40 +7,60 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class Grade {
-    /**
-     * 班级id
-     */
-    @Id
-    private String gradeId;
-    /**
-     * 班级姓名
-     */
-    @Property
-    private String gradeName;
+  @Id
+  private String gradeId;
+  @Property
+  private String gradeName;
+  @Property
+  private int version;
+  @Property
+  private String schoolId;
 
-    @Generated(hash = 732732463)
-    public Grade(String gradeId, String gradeName) {
-        this.gradeId = gradeId;
-        this.gradeName = gradeName;
-    }
 
-    @Generated(hash = 2042976393)
-    public Grade() {
-    }
+  @Generated(hash = 243439227)
+  public Grade(String gradeId, String gradeName, int version, String schoolId) {
+      this.gradeId = gradeId;
+      this.gradeName = gradeName;
+      this.version = version;
+      this.schoolId = schoolId;
+  }
 
-    public String getGradeId() {
-        return gradeId;
-    }
+  @Generated(hash = 2042976393)
+  public Grade() {
+  }
 
-    public void setGradeId(String gradeId) {
-        this.gradeId = gradeId;
-    }
 
-    public String getGradeName() {
-        return gradeName;
-    }
+  public String getGradeId() {
+    return gradeId;
+  }
 
-    public void setGradeName(String gradeName) {
-        this.gradeName = gradeName;
-    }
+  public void setGradeId(String gradeId) {
+    this.gradeId = gradeId;
+  }
+
+
+  public String getGradeName() {
+    return gradeName;
+  }
+
+  public void setGradeName(String gradeName) {
+    this.gradeName = gradeName;
+  }
+
+  public int getVersion() {
+    return version;
+  }
+
+  public void setVersion(int version) {
+    this.version = version;
+  }
+
+  public String getSchoolId() {
+    return schoolId;
+  }
+
+  public void setSchoolId(String schoolId) {
+    this.schoolId = schoolId;
+  }
+
 }

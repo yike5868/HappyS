@@ -13,9 +13,9 @@ import com.lzy.okgo.model.Response;
 import com.zlin.happys.MainActivity;
 import com.zlin.happys.R;
 import com.zlin.happys.base.BaseActivity;
-import com.zlin.happys.model.ClassGrade;
-import com.zlin.happys.model.ClassGradeDao;
-import com.zlin.happys.model.ClassNameDao;
+import com.zlin.happys.model.ClassgradeDao;
+import com.zlin.happys.model.ClasslessonDao;
+import com.zlin.happys.model.ClassnameDao;
 import com.zlin.happys.model.ResultJson;
 import com.zlin.happys.model.ResultModel;
 import com.zlin.happys.utils.OkGoUtils;
@@ -46,12 +46,16 @@ public class SplishActivity extends BaseActivity {
                     ResultJson resultModel = JSON.parseObject(str, ResultJson.class);
                     if(resultModel.getData()!=null){
                         if(resultModel.getData().getClassgradeList()!=null&&resultModel.getData().getClassgradeList().size()>0) {
-                            ClassGradeDao classGradeDao = getDaoSession().getClassGradeDao();
+                            ClassgradeDao classGradeDao = getDaoSession().getClassgradeDao();
                             classGradeDao.insertOrReplaceInTx(resultModel.getData().getClassgradeList());
                         }
                         if(resultModel.getData().getClassnameList()!=null && resultModel.getData().getClassnameList().size()>0){
-                            ClassNameDao classNameDao = getDaoSession().getClassNameDao();
+                            ClassnameDao classNameDao = getDaoSession().getClassnameDao();
                             classNameDao.insertOrReplaceInTx(resultModel.getData().getClassnameList());
+                        }
+                        if(resultModel.getData().getClasslessons()!=null && resultModel.getData().getClasslessons().size()>0){
+                            ClasslessonDao classlessonDao = getDaoSession().getClasslessonDao();
+                            classlessonDao.insertOrReplaceInTx(resultModel.getData().getClasslessons());
                         }
                     }
 

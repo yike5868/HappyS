@@ -3,13 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="aaaaaaa"
-        android:id="@+id/tv_text"
-        android:layout_centerInParent="true"
-        android:textSize="39sp"
-        android:textColor="@color/purple_200"
+    <Button
+        android:text="asdfasdfa"
+        android:id="@+id/btn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"/>
+
+    <com.zlin.happys.view.FuListView
+        android:layout_below="@+id/btn"
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.zlin.happys.view.FuListView>
 
 </RelativeLayout>

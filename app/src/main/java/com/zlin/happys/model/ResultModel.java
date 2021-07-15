@@ -4,22 +4,31 @@ import java.util.List;
 
 public class ResultModel<T>  {
 
-    private List<ClassGrade> classgradeList;
-    private List<ClassName> classnameList;
+    private List<Classgrade> classgradeList;
+    private List<Classname> classnameList;
+    private List<Classlesson> classlessons;
 
-    public List<ClassGrade> getClassgradeList() {
+    public List<Classgrade> getClassgradeList() {
         return classgradeList;
     }
 
-    public void setClassgradeList(List<ClassGrade> classgradeList) {
+    public void setClassgradeList(List<Classgrade> classgradeList) {
         this.classgradeList = classgradeList;
     }
 
-    public List<ClassName> getClassnameList() {
+    public List<Classname> getClassnameList() {
         return classnameList;
     }
 
-    public void setClassnameList(List<ClassName> classnameList) {
+    public void setClassnameList(List<Classname> classnameList) {
         this.classnameList = classnameList;
+    }
+
+    public List<Classlesson> getClasslessons() {
+        return classlessons;
+    }
+
+    public void setClasslessons(List<Classlesson> classlessons) {
+        this.classlessons = classlessons;
     }
 }

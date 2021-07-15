@@ -7,19 +7,23 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class Educationtype {
-  @Id
-  private String ename;
   @Property
+  private String ename;
+  @Id
   private String eid;
   @Property
   private int version;
+  @Property
+  private String versionType;
 
 
-  @Generated(hash = 356285925)
-  public Educationtype(String ename, String eid, int version) {
+  @Generated(hash = 1029988953)
+  public Educationtype(String ename, String eid, int version,
+          String versionType) {
       this.ename = ename;
       this.eid = eid;
       this.version = version;
+      this.versionType = versionType;
   }
 
   @Generated(hash = 66445635)
@@ -51,4 +55,13 @@ public class Educationtype {
   public void setVersion(int version) {
     this.version = version;
   }
+
+  public String getVersionType() {
+    return versionType;
+  }
+
+  public void setVersionType(String versionType) {
+    this.versionType = versionType;
+  }
+
 }

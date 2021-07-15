@@ -15,18 +15,33 @@ public class School {
   private int version;
   @Property
   private String remark;
+  @Property
+  private String hamletId;
 
-  @Generated(hash = 1109441304)
-  public School(String sId, String schoolName, int version, String remark) {
+
+  @Generated(hash = 202866359)
+  public School(String sId, String schoolName, int version, String remark,
+          String hamletId) {
       this.sId = sId;
       this.schoolName = schoolName;
       this.version = version;
       this.remark = remark;
+      this.hamletId = hamletId;
   }
 
   @Generated(hash = 1579966795)
   public School() {
   }
+
+
+  public String getSId() {
+    return sId;
+  }
+
+  public void setSId(String sId) {
+    this.sId = sId;
+  }
+
 
   public String getSchoolName() {
     return schoolName;
@@ -44,14 +59,6 @@ public class School {
     this.sId = sId;
   }
 
-  public int getVersion() {
-    return version;
-  }
-
-  public void setVersion(int version) {
-    this.version = version;
-  }
-
   public String getRemark() {
     return remark;
   }
@@ -60,12 +67,21 @@ public class School {
     this.remark = remark;
   }
 
-  public String getSId() {
-      return this.sId;
+
+  public String getHamletId() {
+    return hamletId;
   }
 
-  public void setSId(String sId) {
-      this.sId = sId;
+  public void setHamletId(String hamletId) {
+    this.hamletId = hamletId;
+  }
+
+  public int getVersion() {
+      return this.version;
+  }
+
+  public void setVersion(int version) {
+      this.version = version;
   }
 
 }
