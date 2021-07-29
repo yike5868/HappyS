@@ -1,15 +1,12 @@
-package com.zlin.happys.ui.dashboard;
+package com.zlin.happys.ui.classFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -18,8 +15,6 @@ import com.zlin.happys.R;
 import com.zlin.happys.ui.classes.ChineseActivity;
 import com.zlin.happys.view.TreeList.ListViewAdapter;
 import com.zlin.happys.view.TreeList.Node;
-import com.zlin.happys.view.TreeList.NodeData;
-import com.zlin.happys.view.TreeList.OnTreeNodeCheckedChangeListener;
 import com.zlin.happys.view.TreeList.OnTreeNodeClickListener;
 
 import java.util.ArrayList;
@@ -45,6 +40,7 @@ public class ClassListFragment extends Fragment {
                 Toast.makeText(getContext(),"asdfasdfasdf",Toast.LENGTH_LONG).show();
             }
         });
+
         //第二个参数 上下文
         //第三个参数 数据集
         //第四个参数 默认展开层级数 0为不展开

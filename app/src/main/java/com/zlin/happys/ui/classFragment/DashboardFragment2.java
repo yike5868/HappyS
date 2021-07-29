@@ -1,4 +1,4 @@
-package com.zlin.happys.ui.dashboard;
+package com.zlin.happys.ui.classFragment;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -27,8 +28,8 @@ import com.zlin.happys.model.Classgrade;
 import com.zlin.happys.model.ClassgradeDao;
 import com.zlin.happys.model.Classname;
 import com.zlin.happys.model.ClassnameDao;
-import com.zlin.happys.model.Grade;
 
+import org.greenrobot.greendao.query.QueryBuilder;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -51,23 +52,50 @@ public class DashboardFragment2 extends BaseFragment {
     private PopupWindow popupwindow;
     private List<Classgrade> gradeList = new ArrayList<>();
     private List<Classname> classes = new ArrayList<>();
+    KDTabAdapter kdTabAdapter;
+
+    List<ClassListFragment2> fragmentList = new ArrayList<>();
+
+    Classgrade selectClassgrade ;
 
     @Nullable
     @org.jetbrains.annotations.Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
 
-         view =inflater.inflate(R.layout.activity_scrollable_tab,container,false);
-        initData();
+        view =inflater.inflate(R.layout.activity_scrollable_tab,container,false);
+        initGradeData();
         initTabView();
+        initTabData();
         initPop();
+        initClassnameData();
         return view;
     }
-    public void initData(){
+
+
+
+    public void initGradeData(){
         ClassgradeDao classGradeDao = getDaoSession().getClassgradeDao();
+
+        QueryBuilder<Classgrade> qb = classGradeDao.queryBuilder();
+        gradeList = qb.orderDesc(ClassgradeDao.Properties.OrderId).list();
+
+        if(gradeList!=null&&gradeList.size()>0){
+            selectClassgrade = gradeList.get(0);
+        }
+    }
+
+    public void initClassnameData(){
         ClassnameDao classNameDao = getDaoSession().getClassnameDao();
-        classes = classNameDao.queryBuilder().list();
-        gradeList = classGradeDao.loadAll();
+        QueryBuilder<Classname> classnameQueryBuilder = classNameDao.queryBuilder();
+        classes = classnameQueryBuilder.where(ClassnameDao.Properties.ClassGradeId.eq(selectClassgrade.getClassGradeId())).orderAsc(ClassnameDao.Properties.OrderId).list();
+        fragmentList.clear();
+        if(classes!=null) {
+            for (int i = 0; i < classes.size(); i++) {
+                fragmentList.add(ClassListFragment2.newInstance(classes.get(i).getId()));
+            }
+        }
+        initTabData();
     }
 
     public void initPop(){
@@ -75,9 +103,10 @@ public class DashboardFragment2 extends BaseFragment {
         View customView = getLayoutInflater().inflate(R.layout.popview_item,
                 null, false);
         // 创建PopupWindow实例,200,150分别是宽度和高度
-        popupwindow = new PopupWindow(customView, 550, 580);
+        popupwindow = new PopupWindow(customView, 380, 580);
         // 设置动画效果 [R.style.AnimationFade 是自己事先定义好的]
         popupwindow.setAnimationStyle(R.style.popwin_anim_style);
+
         popupwindow.setFocusable(true);
         popupwindow.setBackgroundDrawable(new BitmapDrawable());
         // 自定义view添加触摸事件
@@ -93,7 +122,19 @@ public class DashboardFragment2 extends BaseFragment {
         });
         ListView popListView = customView.findViewById(R.id.popListView);
         popListView.setAdapter(new popAdapter(getContext()));
+        popListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                selectClassgrade = gradeList.get(i);
+                tv_grade.setText(selectClassgrade.getClassGradeName());
+                initClassnameData();
+                initTabData();
+                popupwindow.dismiss();
+
+            }
+        });
         tv_grade = view.findViewById(R.id.tv_grade);
+        tv_grade.setText(selectClassgrade.getClassGradeName());
         tv_grade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -101,7 +142,7 @@ public class DashboardFragment2 extends BaseFragment {
                     popupwindow.dismiss();
                     return;
                 } else {
-                    popupwindow.showAsDropDown(tv_grade, 0, 5);
+                    popupwindow.showAsDropDown(tv_grade, 10, 40);
                 }
 
             }
@@ -153,13 +194,33 @@ public class DashboardFragment2 extends BaseFragment {
 
     public void initTabView(){
         vp2 = view.findViewById(R.id.vp2);
+        kdTabLayout = view.findViewById(R.id.tab2);
+    }
+
+    public void initTabData(){
 
         ViewPagerFragmentStateAdapter mAdapter = new ViewPagerFragmentStateAdapter(DashboardFragment2.this);
         vp2.setAdapter(mAdapter);
         vp2.setUserInputEnabled(true);//true:滑动，false：禁止滑动
+        vp2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                super.onPageScrolled(position, positionOffset, positionOffsetPixels);
+            }
 
-        kdTabLayout = view.findViewById(R.id.tab2);
-        KDTabAdapter kdTabAdapter = new KDTabAdapter() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                fragmentList.get(position).datachange();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+            }
+        });
+
+        kdTabAdapter = new KDTabAdapter() {
             @org.jetbrains.annotations.Nullable
             @Override
             public KDTab createTab(int position) {
@@ -175,6 +236,7 @@ public class DashboardFragment2 extends BaseFragment {
                     @Override
                     public void onClick(View view) {
                         vp2.setCurrentItem(position);
+                        fragmentList.get(position).datachange();
                     }
                 });
                 return kdColorMorphingTextTab;
@@ -211,6 +273,7 @@ public class DashboardFragment2 extends BaseFragment {
             super(fragment);
         }
 
+
         @Override
         public int getItemCount() {
             return classes.size();
@@ -219,7 +282,7 @@ public class DashboardFragment2 extends BaseFragment {
         @NonNull
         @Override
         public Fragment createFragment(int position) {
-            return ClassListFragment2.newInstance(classes.get(position).getName());
+            return fragmentList.get(position);
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.zlin.happys.ui.dashboard;
+package com.zlin.happys.ui.classFragment;
 
 
 import android.view.View;

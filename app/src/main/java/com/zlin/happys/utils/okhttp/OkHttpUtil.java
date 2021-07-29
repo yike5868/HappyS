@@ -16,7 +16,7 @@ public class OkHttpUtil {
     public final static int READ_TIMEOUT = 100;
     public final static int WRITE_TIMEOUT = 60;
     // 后台数据接口基础路径
-    public final static String BASE_URL="http://192.168.64.1:8010";
+    public final static String BASE_URL="http://168.64.1:8010";
     public static final OkHttpClient client = new OkHttpClient.Builder()
             .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)// 设置读取超时时间
             .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)// 设置写的超时时间

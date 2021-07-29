@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.zlin.happys.ui.dashboard.DashboardFragment"
+        android:name="com.zlin.happys.ui.classFragment.DashboardFragment2"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 

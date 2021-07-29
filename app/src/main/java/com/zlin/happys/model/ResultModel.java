@@ -6,7 +6,19 @@ public class ResultModel<T>  {
 
     private List<Classgrade> classgradeList;
     private List<Classname> classnameList;
-    private List<Classlesson> classlessons;
+    private List<Classlesson> classlessonList;
+    private List<Classunit> classunitList;
+    private List<Classbody> classbodyList;
+    private List<Classexercises> classexercisesList;
+    private List<Classpoints> classpointsList;
+
+    public List<Classbody> getClassbodyList() {
+        return classbodyList;
+    }
+
+    public void setClassbodyList(List<Classbody> classbodyList) {
+        this.classbodyList = classbodyList;
+    }
 
     public List<Classgrade> getClassgradeList() {
         return classgradeList;
@@ -24,11 +36,35 @@ public class ResultModel<T>  {
         this.classnameList = classnameList;
     }
 
-    public List<Classlesson> getClasslessons() {
-        return classlessons;
+    public List<Classlesson> getClasslessonList() {
+        return classlessonList;
     }
 
-    public void setClasslessons(List<Classlesson> classlessons) {
-        this.classlessons = classlessons;
+    public void setClasslessonList(List<Classlesson> classlessonList) {
+        this.classlessonList = classlessonList;
+    }
+
+    public List<Classunit> getClassunitList() {
+        return classunitList;
+    }
+
+    public void setClassunitList(List<Classunit> classunitList) {
+        this.classunitList = classunitList;
+    }
+
+    public List<Classexercises> getClassexercisesList() {
+        return classexercisesList;
+    }
+
+    public void setClassexercisesList(List<Classexercises> classexercisesList) {
+        this.classexercisesList = classexercisesList;
+    }
+
+    public List<Classpoints> getClasspointsList() {
+        return classpointsList;
+    }
+
+    public void setClasspointsList(List<Classpoints> classpointsList) {
+        this.classpointsList = classpointsList;
     }
 }

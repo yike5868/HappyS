@@ -11,6 +11,8 @@ import com.zlin.happys.model.DaoSession;
 public class BaseFragment extends Fragment {
     public DaoSession getDaoSession(){
         HSApp hsApp = (HSApp) ((Activity)getContext()).getApplication();
+        if(hsApp == null)
+            return null;
         DaoSession daoSession =  hsApp.getDaoSession();
         return daoSession;
     }

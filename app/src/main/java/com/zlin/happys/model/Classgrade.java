@@ -8,7 +8,7 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class Classgrade {
-
+  @Property
   private String classGradeName;
   @Id
   private String classGradeId;
@@ -23,13 +23,13 @@ public class Classgrade {
   @Property
   private String versionType;
   @Property
-  private long orderId;
+  private int orderId;
 
 
-  @Generated(hash = 1862274924)
+  @Generated(hash = 288764015)
   public Classgrade(String classGradeName, String classGradeId, String ename,
           String etype, int version, String versionname, String versionType,
-          long orderId) {
+          int orderId) {
       this.classGradeName = classGradeName;
       this.classGradeId = classGradeId;
       this.ename = ename;
@@ -105,13 +105,11 @@ public class Classgrade {
     this.versionType = versionType;
   }
 
-
-  public long getOrderId() {
+  public int getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(long orderId) {
+  public void setOrderId(int orderId) {
     this.orderId = orderId;
   }
-
 }

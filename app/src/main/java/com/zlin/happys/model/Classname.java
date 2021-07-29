@@ -20,16 +20,22 @@ public class Classname {
   @Property
   private String etype;
 
+  @Property
+  private String orderId;
 
-  @Generated(hash = 157027638)
+
+
+
+  @Generated(hash = 108418246)
   public Classname(String id, String name, String classGradeId, int version,
-          String versionType, String etype) {
+          String versionType, String etype, String orderId) {
       this.id = id;
       this.name = name;
       this.classGradeId = classGradeId;
       this.version = version;
       this.versionType = versionType;
       this.etype = etype;
+      this.orderId = orderId;
   }
 
   @Generated(hash = 1934583420)
@@ -88,4 +94,11 @@ public class Classname {
     this.etype = etype;
   }
 
+  public String getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(String orderId) {
+    this.orderId = orderId;
+  }
 }

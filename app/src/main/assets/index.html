@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title></title>
+
+<script src="js/hanzi-writer.min.js"></script>
+<script src="js/polyfill.min.js"></script>
+
+</head>
+<body>
+
+<div id="character-target-div"></div>
+<button id="animate-button" align="center">笔顺</button>
+<script>
+	var char = '',writer = [];
+	function setword(word){
+
+	for (var x = 0; x < word.length; x++) {
+		writer.push(writeChar(word[x]))
+	}
+
+	}
+
+
+	function writeChar(char) {
+		return HanziWriter.create('character-target-div', char, {
+			width: 200,
+			height: 200,
+			padding: 5,
+			showOutline: true
+		});
+	}
+	document.getElementById('animate-button').addEventListener('click', function () {
+		if(writer.length > 0){
+			writer.map(function(w){
+				w.animateCharacter()
+			})
+		}
+	});
+</script>
+</body>
+</html>

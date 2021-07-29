@@ -1,4 +1,4 @@
-package com.zlin.happys.ui.dashboard;
+package com.zlin.happys.ui.classFragment;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -4,6 +4,9 @@ import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Id;
 import org.greenrobot.greendao.annotation.Property;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Transient;
+
+import java.util.List;
 
 @Entity
 public class Classunit {
@@ -19,17 +22,22 @@ public class Classunit {
   private String classGradeId;
   @Property
   private String etype;
+  @Property
+  private int orderId;
+  @Transient
+  private List<Classlesson> classlessonList;
 
 
-  @Generated(hash = 767776824)
+  @Generated(hash = 1180881130)
   public Classunit(String unitId, String unitName, String classId,
-          String versionType, String classGradeId, String etype) {
+          String versionType, String classGradeId, String etype, int orderId) {
       this.unitId = unitId;
       this.unitName = unitName;
       this.classId = classId;
       this.versionType = versionType;
       this.classGradeId = classGradeId;
       this.etype = etype;
+      this.orderId = orderId;
   }
 
   @Generated(hash = 973449164)
@@ -90,4 +98,19 @@ public class Classunit {
     this.etype = etype;
   }
 
+  public int getOrderId() {
+    return orderId;
+  }
+
+  public void setOrderId(int orderId) {
+    this.orderId = orderId;
+  }
+
+  public List<Classlesson> getClasslessonList() {
+    return classlessonList;
+  }
+
+  public void setClasslessonList(List<Classlesson> classlessonList) {
+    this.classlessonList = classlessonList;
+  }
 }

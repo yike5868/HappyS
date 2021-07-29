@@ -1,5 +1,6 @@
 package com.zlin.happys.ui.classes;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,9 +15,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.zlin.happys.R;
-import com.zlin.happys.base.BaseActivity;
-import com.zlin.happys.ui.dashboard.ClassListFragment;
-import com.zlin.happys.ui.dashboard.DashboardFragment2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,24 +31,27 @@ public class ChineseActivity extends FragmentActivity {
     ViewPager2 vp2;
     KDTabLayout kdTabLayout;
 
-    String [] strs = new String[]{"课文","生字","讲解","练习"};
+    String [] strs = new String[]{"课文","生字","讲解","习题"};
     List<Fragment> fragmentList;
-
+    String lessonId;
 
 
     @Override
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chinese);
+        Intent intent = getIntent();
+        lessonId = intent.getStringExtra("lessonId");
+
         initTabView();
     }
 
     public void initTabView(){
         fragmentList = new ArrayList<>();
-        fragmentList.add( ClassBodyFragment.newInstance(""));
-        fragmentList.add(NewWordFragment.newInstance(""));
-        fragmentList.add(NewWordFragment.newInstance(""));
-        fragmentList.add(NewWordFragment.newInstance(""));
+        fragmentList.add(ClassBodyFragment.newInstance(lessonId));
+        fragmentList.add(NewWordFragment.newInstance(lessonId));
+        fragmentList.add(ClasspointsFragment.newInstance(lessonId));
+        fragmentList.add(ClassExplainFragment.newInstance(lessonId));
         vp2 = findViewById(R.id.vp2);
 
         ViewPagerFragmentStateAdapter mAdapter = new ViewPagerFragmentStateAdapter(ChineseActivity.this);

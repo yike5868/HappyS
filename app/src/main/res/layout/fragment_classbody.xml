@@ -1,23 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
-    <com.zlin.happys.view.SpellTextView
-        android:textSize="30sp"
-        android:id="@+id/stv_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <com.zlin.happys.view.VerticalScrollView
+    <LinearLayout
+        android:id="@+id/ll_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical"
-        android:fillViewport="true">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="机械播放" />
+
+        <Button
+            android:id="@+id/btn_play2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="人声播放" />
+
         <com.zlin.happys.view.SpellTextView
-            android:id="@+id/stv_body"
-            android:scrollbars="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.zlin.happys.view.VerticalScrollView>
+            android:id="@+id/stv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <WebView
+        android:layout_below="@+id/ll_title"
+        android:id="@+id/wv_body"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/laba"
+        android:scaleType="center"
+        android:contentDescription="播放"
+         />
 
 </RelativeLayout>

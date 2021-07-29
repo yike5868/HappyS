@@ -53,10 +53,6 @@ public class SplishActivity extends BaseActivity {
                             ClassnameDao classNameDao = getDaoSession().getClassnameDao();
                             classNameDao.insertOrReplaceInTx(resultModel.getData().getClassnameList());
                         }
-                        if(resultModel.getData().getClasslessons()!=null && resultModel.getData().getClasslessons().size()>0){
-                            ClasslessonDao classlessonDao = getDaoSession().getClasslessonDao();
-                            classlessonDao.insertOrReplaceInTx(resultModel.getData().getClasslessons());
-                        }
                     }
 
                 }
@@ -65,9 +61,6 @@ public class SplishActivity extends BaseActivity {
             @Override
             public void onError(Response response) {
                 super.onError(response);
-                Intent intent = new Intent(SplishActivity.this, MainActivity.class);
-                startActivity(intent);
-                SplishActivity.this.finish();
             }
 
             @Override

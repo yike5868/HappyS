@@ -1,43 +1,25 @@
-package com.zlin.happys.ui.dashboard;
+package com.zlin.happys.ui.classFragment;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
-import com.lzy.okgo.callback.AbsCallback;
-import com.lzy.okgo.callback.StringCallback;
-import com.lzy.okgo.model.Response;
 import com.zlin.happys.R;
 import com.zlin.happys.base.BaseFragment;
 import com.zlin.happys.databinding.FragmentDashboardBinding;
 import com.zlin.happys.model.ClassgradeDao;
 import com.zlin.happys.model.Classname;
 import com.zlin.happys.model.ClassnameDao;
-import com.zlin.happys.utils.OkGoUtils;
-import com.zlin.happys.utils.UrlUtil;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 
 public class DashboardFragment extends BaseFragment {
@@ -138,5 +120,7 @@ public class DashboardFragment extends BaseFragment {
         public Fragment createFragment(int position) {
             return ClassListFragment.newInstance(classes.get(position).getName());
         }
+
+
     }
 }
