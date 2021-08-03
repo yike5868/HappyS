@@ -52,6 +52,8 @@ public  class ClassListFragment2 extends BaseFragment {
 
         setOnClickEvent();
         getData();
+        initData();
+        initAdapter();
         return root;
     }
 
@@ -125,10 +127,11 @@ public  class ClassListFragment2 extends BaseFragment {
                             classlessonDao.insertOrReplaceInTx(resultModel.getData().getClasslessonList());
                         }
                     }
-                    initData();
-                    initAdapter();
+
                 }
             }
+
+
 
             @Override
             public void onError(Response response) {
@@ -138,7 +141,9 @@ public  class ClassListFragment2 extends BaseFragment {
 
             @Override
             public void onFinish() {
+
                 super.onFinish();
+
             }
         });
     }

@@ -17,6 +17,7 @@ import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import com.zlin.happys.model.DaoMaster;
 import com.zlin.happys.model.DaoSession;
 import com.zlin.happys.model.Student;
+import com.zlin.happys.utils.DbManager;
 import com.zlin.happys.utils.StringUtils;
 
 import java.util.concurrent.TimeUnit;
@@ -45,7 +46,9 @@ public class HSApp extends Application {
     /**
      * greendao数据库初始化
      */
+    //TODO 数据库需要测升级
     private void initDreenDao() {
+//        DbManager.getInstance(this).getDaoMaster(this);
         DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(this, "zbc_test.db");
         SQLiteDatabase db = devOpenHelper.getWritableDatabase();
         DaoMaster daoMaster = new DaoMaster(db);

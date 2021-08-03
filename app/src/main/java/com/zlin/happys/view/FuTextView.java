@@ -18,8 +18,6 @@ import java.util.Date;
 
 public class FuTextView extends AppCompatTextView {
 
-    int rotate;
-
     public FuTextView(Context context) {
         super(context);
     }
@@ -34,29 +32,9 @@ public class FuTextView extends AppCompatTextView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.rotate(rotate, this.getWidth() / 2f, this.getHeight() / 2f);
-        super.onDraw(canvas);
-        canvas.restore();
-    }
-
-    public void setDegrees(int degrees) {
-        rotate = degrees;
-    }
 
     @Override
     public void setText(CharSequence text, BufferType type) {
-        if(text == null)
-            return;
-        if (text.toString().indexOf("*") > -1) {
-            text = Html.fromHtml("" + text.toString().replace("*", "")
-                    + "<font color=\"red\" size=\"40px\"><b>＊</b></font>");
-        } else if (text.toString().indexOf("＊") > -1)
-            text = Html.fromHtml("" + text.toString().replace("＊", "")
-                    + "<font color=\"red\" size=\"40px\"><b>＊</b></font>");
-
         super.setText(text, type);
     }
 
@@ -70,28 +48,6 @@ public class FuTextView extends AppCompatTextView {
         setText(date_str);
     }
 
-//    public void setAge(Date date) {
-//        if (date == null)
-//            return;
-//        Calendar ca = Calendar.getInstance();
-//        int now_year = ca.get(Calendar.YEAR);
-//        ca.setTime(date);
-//        int year = ca.get(Calendar.YEAR);
-//        setText(now_year - year + " 岁");
-//    }
-
-    public void setAge( Date birthday) {
-        if (birthday == null) {
-            return;
-        }
-        Calendar now = Calendar.getInstance();
-        Calendar birthCal = Calendar.getInstance();
-        birthCal.setTime(birthday);
-        int monthGap = now.get(Calendar.MONTH) - birthCal.get(Calendar.MONTH);
-        int yearGap = (now.get(Calendar.YEAR) - birthCal.get(Calendar.YEAR)) * 12;
-        int gapMonth = monthGap + yearGap;
-        setText(gapMonth / 12+"岁");
-    }
 
     public void setText(Integer i) {
         if (i != null)

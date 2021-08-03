@@ -1,8 +1,11 @@
 package com.zlin.happys.ui.classes;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
@@ -26,12 +29,14 @@ import github.xuqk.kdtablayout.widget.KDTabIndicator;
 import github.xuqk.kdtablayout.widget.indicator.KDRecIndicator;
 import github.xuqk.kdtablayout.widget.tab.KDColorMorphingTextTab;
 
+import static java.lang.Math.abs;
+
 public class ChineseActivity extends FragmentActivity {
 
     ViewPager2 vp2;
     KDTabLayout kdTabLayout;
 
-    String [] strs = new String[]{"课文","生字","讲解","习题"};
+    String [] strs = new String[]{"课文","生字","讲解","习题","听写"};
     List<Fragment> fragmentList;
     String lessonId;
 
@@ -52,6 +57,7 @@ public class ChineseActivity extends FragmentActivity {
         fragmentList.add(NewWordFragment.newInstance(lessonId));
         fragmentList.add(ClasspointsFragment.newInstance(lessonId));
         fragmentList.add(ClassExplainFragment.newInstance(lessonId));
+        fragmentList.add(DictationFragment.newInstance(lessonId));
         vp2 = findViewById(R.id.vp2);
 
         ViewPagerFragmentStateAdapter mAdapter = new ViewPagerFragmentStateAdapter(ChineseActivity.this);
@@ -122,5 +128,33 @@ public class ChineseActivity extends FragmentActivity {
         public Fragment createFragment(int position) {
             return fragmentList.get(position);
         }
+    }
+    private float startX = 0;
+    private float startY = 0;
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                startX = ev.getX();
+                startY = ev.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float endX = ev.getX();
+                float endY = ev.getY();
+                float disX = abs(endX-startX);
+                float disY = abs(endY - startY);
+                if(disX<disY){
+                    vp2.setUserInputEnabled(false);
+                }
+                break;
+                case MotionEvent.ACTION_UP:
+                    startX = 0;
+                    startY = 0;
+                    vp2
+                            .setUserInputEnabled(true);
+                    break;
+        }
+        return super.dispatchTouchEvent(ev);
     }
 }

@@ -2,17 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/white"
+    android:minHeight="70sp"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_marginTop="30dp"
+
+    <com.zlin.happys.view.FuTextView
+        android:id="@+id/tv_py"
+        android:textSize="20sp"
         android:layout_centerHorizontal="true"
-        android:text="点击文字查看详情"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <WebView
-        android:layout_marginTop="70dp"
-        android:id="@+id/webview"
+
+    <com.zlin.happys.view.FuTextView
+        android:layout_below="@+id/tv_py"
+        android:id="@+id/tv_hz"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 </RelativeLayout>
